@@ -1,0 +1,8 @@
+<% provide(:title, "Home") %>
+<div class="center jumbotron">
+  <% if logged_in? %>
+  <% else %>
+    <h1>Framgia E-Learning System</h1>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
