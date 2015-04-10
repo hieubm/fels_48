@@ -1,0 +1,9 @@
+<tr>
+  <td><%= category.id %></td>
+  <td><%= link_to category.name, edit_admin_category_path(category) %></td>
+  <td><%= category.description %></td>
+  <td><%= link_to "Words", nil, class: "btn btn-success" %></td>
+  <td><%= link_to "Delete", admin_category_path(category), method: :delete,
+                            data: {confirm: "Are you sure?"},
+                            class: "btn btn-danger" %></td>
+</tr>
