@@ -1,0 +1,3 @@
+name,email,password,admin
+admin,admin@admin.com,123456,true
+user,user@user.com,123456,false
