@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'categories#index'
-    resources :categories, except: [:show]
+    resources :categories, except: [:show] do
+      resources :words, except: [:show]
+    end
   end
 end

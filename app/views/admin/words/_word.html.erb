@@ -1,0 +1,23 @@
+<tr>
+  <td><%= word.id %></td>
+  <td>
+    <%= link_to word.content,
+        edit_admin_category_word_path(@category.id, word),
+        class: "glyphicon glyphicon-pencil" %>
+  </td>
+  <% word.answers.each do |answer| %>
+    <td>
+    <% if answer.correct %>
+      <i class="glyphicon glyphicon-ok"></i>
+    <% elsif %>
+      <i class="glyphicon glyphicon-remove"></i>
+    <% end %>
+    <%= answer.content %>
+    </td>
+  <% end %>
+  <td>
+    <%= link_to "Delete", [:admin, @category, word],
+          method: :delete, data: {confirm: 'Are you sure?'},
+          class: "btn btn-danger" %>
+  </td>
+</tr>

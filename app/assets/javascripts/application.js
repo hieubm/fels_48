@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  var answer_checkbox = $(".answer-checkbox");
+  answer_checkbox.click(function() {
+    answer_checkbox.prop("checked", false);
+    $(this).prop("checked", true);
+  });
+})
