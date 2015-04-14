@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require "csv"
+
+data_filter = File.dirname(__FILE__) + "/data/*.csv"
+
+Dir[data_filter].each do |file_path|
+  table_name = File.basename file_path, ".csv"
+  csv_text = File.read file_path
+  csv = CSV.parse csv_text, headers: true
+  csv.each do |row|
+   table_name.classify.constantize.create row.to_hash
+  end
+end

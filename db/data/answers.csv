@@ -1,0 +1,17 @@
+word_id,content,correct
+1,xin chào,true
+1,tạm biệt,false
+1,buổi sáng,false
+1,thế giới,false
+2,tốt,false
+2,buổi sáng,false
+2,thế giới,true
+2,xinh đẹp,false
+3,xin chào,false
+3,tốt,true
+3,buổi sáng,false
+3,thế giới,false
+4,tốt,false
+4,thế giới,false
+4,xinh đẹp,false
+4,buổi sáng,true
