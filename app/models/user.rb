@@ -56,4 +56,8 @@ class User < ActiveRecord::Base
   def following? other_user
     following.include? other_user
   end
+
+  def sum_learned_words category
+    self.learned_words.from_category(category).count
+  end
 end

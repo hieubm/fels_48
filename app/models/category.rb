@@ -4,4 +4,8 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, length: {maximum: 100}
   validates :description, length: {maximum: 400}
+
+  def sum_words
+    self.words.count
+  end
 end

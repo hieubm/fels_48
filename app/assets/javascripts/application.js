@@ -22,4 +22,18 @@ $(function() {
     answer_checkbox.prop("checked", false);
     $(this).prop("checked", true);
   });
+
+  if($(".word-answer").length > 0) {
+    $(".word-answer").click(function() {
+      var current_block = $(this).closest(".word-block");
+      var next_block = current_block.next(".word-block");
+      if(next_block.length > 0) {
+        current_block.hide();
+        next_block.show();
+      } else {
+        $(".lesson-form").submit();
+      }
+    });
+    $("#word-0").show();
+  }
 })
