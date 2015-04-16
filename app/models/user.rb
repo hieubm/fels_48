@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
 
   has_many :lessons, dependent: :destroy
   has_many :learned_words, dependent: :destroy
-  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
-  has_many :reverse_relationships, foreign_key: "followed_id",
-                                   class_name:  "Relationship",
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
                                    dependent:   :destroy
-  has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
@@ -41,5 +43,17 @@ class User < ActiveRecord::Base
 
   def forget
     update_attributes! remember_digest: nil
+  end
+
+  def follow other_user
+    active_relationships.create followed_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following? other_user
+    following.include? other_user
   end
 end
