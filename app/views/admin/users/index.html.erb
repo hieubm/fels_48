@@ -1,0 +1,21 @@
+<% provide :title, "Users" %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Users</h1>
+    <%= link_to "Add new", new_admin_user_path, class: "btn btn-primary" %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-1">#</th>
+          <th class="col-md-4">Name</th>
+          <th class="col-md-6">Email</th>
+          <th class="col-md-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @users %>
+      </tbody>
+    </table>
+    <%= will_paginate %>
+  </div>
+</div>
