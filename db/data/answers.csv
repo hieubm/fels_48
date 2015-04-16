@@ -15,3 +15,16 @@ word_id,content,correct
 4,thế giới,false
 4,xinh đẹp,false
 4,buổi sáng,true
+5,rượu,false
+5,cá,true
+5,cơm,false
+5,bia,false
+6,cơm,true
+6,cá,false
+6,rượu,false
+6,bia,false
+7,cơm,false
+7,cá,false
+7,bia,false
+7,rượu,true
+

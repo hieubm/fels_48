@@ -1,0 +1,35 @@
+<% provide :title, "Word List" %>
+<h1>Word List</h1>
+
+<div class="row">
+    <%= form_for words_path, method: :get do |f| %>
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, @category.id) %>
+      </div>
+      <div class="col-sm-6">
+        <% {learned_words: "Learned", not_learned_words: "Not Learned", all: "All"}.each do |filter, label| %>
+        <label>
+          <%= radio_button_tag :filter, filter, filter.to_s == @filter %>
+          <%= label %>
+        </label>
+        <% end %>
+      </div>
+      <div class="col-sm-2 col-sm-offset-6">
+        <%= f.submit "Filter", class: "btn" %>
+      </div>
+    <% end %>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <%= render @words %>
+    </table>
+  </div>
+</div>
