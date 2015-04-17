@@ -1,6 +1,8 @@
 class Lesson < ActiveRecord::Base
+  include ActivityModule
+
   before_save :update_correct_num
-  after_save :update_learned_words
+  after_save :update_learned_words, :add_activity
 
   belongs_to :user
   belongs_to :category
@@ -30,5 +32,9 @@ class Lesson < ActiveRecord::Base
         learned_word.save
       end
     end
+  end
+
+  def add_activity
+    new_activity self.user, self.id, Activity::TYPE_FINISH_LESSON
   end
 end
