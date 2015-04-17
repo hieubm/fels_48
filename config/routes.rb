@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :categories, except: [:show] do
       resources :words, except: [:show]
     end
+    resources :users, except: [:show]
   end
 end
