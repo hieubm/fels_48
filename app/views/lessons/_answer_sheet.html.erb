@@ -1,0 +1,17 @@
+<div id="word-<%= f.index %>" class="word-block collapse">
+  <%= f.hidden_field :word_id, value: f.object.word.id %>
+
+  <h3 class="text-center">
+    <%= "#{f.index + 1} / #{@lesson.answer_sheets.length}" %>
+  </h3>
+
+  <h3 class="text-center"><strong><%= f.object.word.content %></strong></h3>
+  <div class="btn-group-vertical center-block" data-toggle="buttons">
+    <% f.object.word.answers.each do |answer| %>
+        <label class="btn btn-default btn-lg">
+          <%= f.radio_button :answer_id, answer.id, class: "word-answer" %>
+          <%= answer.content %>
+        </label>
+    <% end %>
+  </div>
+</div>

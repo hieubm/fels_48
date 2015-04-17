@@ -9,6 +9,10 @@ class Word < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
+  scope :random_words, ->user {where("id NOT IN
+                              (SELECT word_id FROM learned_words WHERE user_id = ?)",
+                              user.id).order("RAND()").limit 20}
+
   private
   def check_correct
     if answers.select{|op| op.correct}.blank?

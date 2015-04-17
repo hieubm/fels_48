@@ -3,7 +3,7 @@ class AnswerSheet < ActiveRecord::Base
   belongs_to :word
   belongs_to :answer
 
-  validates :lesson_id, presence: true
   validates :word_id, presence: true
-  validates :correct, presence: true
+  validates :correct, inclusion: {in: [true, false]}
+  validates :correct, exclusion: {in: [nil]}
 end

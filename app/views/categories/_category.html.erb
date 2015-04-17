@@ -1,6 +1,15 @@
 <div>
-  <h3><%= category.name %></h3>
+  <h3>
+    <%= category.name %>
+    <small>
+      <%= "You have learned #{current_user.sum_learned_words category}/#{category.sum_words} words." %>
+    </small>
+  </h3>
   <p><%= category.description %></p>
-  <%= link_to "Start Lesson", nil, class: "btn btn-primary" %>
+  <% if current_user.sum_learned_words(category) < category.sum_words %>
+    <%= link_to "Start Lesson", [:new, category, :lesson], class: "btn btn-primary" %>
+  <% else %>
+    You have learned all words from this category.
+  <% end %>
   <hr/>
 </div>
