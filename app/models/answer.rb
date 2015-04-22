@@ -7,4 +7,5 @@ class Answer < ActiveRecord::Base
   validates :correct, exclusion: {in: [nil]}
 
   scope :correct, ->{where correct: true}
+  scope :not_correct, ->{where correct: false}
 end

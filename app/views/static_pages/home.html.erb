@@ -1,5 +1,5 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
+
   <% if logged_in? %>
     <div class="row">
       <aside class="col-md-3">
@@ -14,9 +14,10 @@
         </div>
       </div>
     </div>
+    <%= render @activities %>
   <% else %>
+  <div class="center jumbotron">
     <h1>Framgia E-Learning System</h1>
     <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
   <% end %>
-</div>
-<%= render @activities %>
