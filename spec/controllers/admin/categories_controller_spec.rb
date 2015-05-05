@@ -35,12 +35,20 @@ describe Admin::CategoriesController do
     end
   end
 
-  describe "POST #create" do
+  context "POST #create" do
+    let(:post_create) {post :create, {category: FactoryGirl.attributes_for(:category)}}
+
     before {
       log_in admin
-      post :create
     }
-    subject {response}
-    it {is_expected.to redirect_to login_path}
+
+    it "should increase category by 1" do
+      expect {post_create}.to change(Category, :count).by 1
+    end
+
+    it "should redirect to categories list page" do
+      post_create
+      expect(response).to redirect_to admin_categories_path
+    end
   end
 end
